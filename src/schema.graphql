@@ -1,0 +1,117 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input ActivateInput {
+  activationToken: String!
+}
+
+type Auth {
+  """JWT Access token"""
+  accessToken: JWT!
+  user: User!
+}
+
+input ChangePwdInput {
+  newPassword: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  activateProfile(data: ActivateInput!): String!
+  changePassword(data: ChangePwdInput!): Boolean!
+  register(data: RegisterInput!): Auth!
+  resetPassword(data: ResetPwdInput!): String!
+  updateProfile(data: UpdateProfileInput!): User!
+  updateUserProfile(data: UpdateUserProfileInput!): User!
+}
+
+type Query {
+  forgotPassword(email: String!): ServerResponseEntity!
+  getGoogleAuthUrl: String!
+  getUser(id: String!): User!
+  googleAuth(data: SocialAuthInput!): Auth!
+  login(data: LoginInput!): Auth!
+  logout: ServerResponseEntity!
+  refresh: Token!
+  user: User!
+  users: [User!]!
+}
+
+input RegisterInput {
+  email: String!
+  password: String!
+}
+
+input ResetPwdInput {
+  newPassword: String!
+  resetToken: String!
+}
+
+"""User role"""
+enum Role {
+  ADMIN
+  USER
+}
+
+type ServerResponseEntity {
+  message: String!
+  status: Boolean!
+}
+
+input SocialAuthInput {
+  code: String
+}
+
+type Token {
+  """JWT Access token"""
+  accessToken: JWT!
+}
+
+input UpdateProfileInput {
+  avatar: String
+  name: String
+}
+
+input UpdateUserProfileInput {
+  avatar: String
+  id: String!
+  isActivated: Boolean
+  isSuspended: Boolean
+
+  """This is username field"""
+  name: String
+  role: String
+}
+
+type User {
+  avatar: String
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  email: String!
+  googleId: String
+  id: ID!
+  isActivated: Boolean!
+  isSuspended: Boolean!
+  name: String
+  role: Role!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}

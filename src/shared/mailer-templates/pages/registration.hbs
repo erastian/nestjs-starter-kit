@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+{{>head}}
+<body>
+<div class="wrapper">
+    <div class="email-wrapper">
+        <div class="container">
+            <div class="upper-line"></div>
+            {{> header }}
+            <div class="content">
+                <h3>Hi, {{username}}!</h3>
+                <p>With this letter we confirm that your registration has been successfully completed. We are incredibly
+                    pleased to have
+                    you on board. As you can see below, there is a button to help you complete your registration and
+                    confirm
+                    that this
+                    is indeed your email. </p>
+                <div class="actions">
+                    <a href="{{link}}" class="button">Activate my account</a>
+                </div>
+                <p>Take your time, the activation link is active for <strong>two days</strong>. As a last resort, you can always request
+                    a
+                    new activation
+                    link.</p>
+                {{> regards }}
+            </div>
+        </div>
+        {{>footer}}
+    </div>
+</div>
+</body>
+</html>
